@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentExercises
 {
@@ -36,7 +37,7 @@ namespace StudentExercises
             Exercise exercise1 = new Exercise("Build a Ramen Shop", "React");
             Exercise exercise2 = new Exercise("Build a Record Collector", "C sharp");
             Exercise exercise3 = new Exercise("Pass a note", "Java");
-            Exercise exercise4 = new Exercise("Make a music sharing app", "React");
+            Exercise exercise4 = new Exercise("Make a music sharing app", "Javascript");
 
             Student fortuMugnano = new Student("Fortunato", "Mugnano", "Fortu Mugnano", 35);
             Student bigDave = new Student("Big", "Dave", "Big Dave", 35);
@@ -59,6 +60,42 @@ namespace StudentExercises
             moSilvera.assignExercise(cohort35.Students, exercise1);
             smartyJones.assignExercise(cohort36.Students, exercise2);
             sweetpeaSmith.assignExercise(cohort37.Students, exercise3);
+
+            List<Student> students = new List<Student>()
+            {
+                fortuMugnano,
+                bigDave,
+                nickWeasel,
+                dyranGurifusu
+            };
+
+            List<Exercise> exercises = new List<Exercise>()
+            {
+                exercise1,
+                exercise2,
+                exercise3,
+                exercise4
+            };
+            List<Instructor> instructors = new List<Instructor>()
+            {
+                moSilvera,
+                smartyJones,
+                sweetpeaSmith
+            };
+            List<Cohort> cohorts = new List<Cohort>()
+            {
+                cohort35,
+                cohort36,
+                cohort37,
+                cohort38
+            };
+
+            List<Exercise> jsExercise = exercises.Where(exercise => exercise.Language == "Javascript").ToList();
+            foreach (var item in jsExercise)
+            {
+                Console.WriteLine(jsExercise);
+            }
         }
+
     }
 }
