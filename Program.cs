@@ -95,7 +95,47 @@ namespace StudentExercises
             {
                 Console.WriteLine(jsExercise);
             }
-        }
 
-    }
+            var cohort35List = (from student in students where student.Cohort == 35 select student).ToList();
+            cohort35.Students.ForEach(student =>
+            {
+                Console.WriteLine($"{student.FirstName} {student.LastName}");
+            });
+
+            var cohort35LastNames = students.OrderBy(student => student.LastName).ToList();
+            foreach (var item1 in cohort35LastNames)
+            {
+                Console.WriteLine(item1.LastName);
+            }
+
+            var studentNoExercises = students.Where(student => student.Exercises.Count == 0).ToList();
+            foreach (var item2 in studentNoExercises)
+            {
+                Console.WriteLine($"This student with no exercises is {item2.FirstName} {item2.LastName}");
+            }
+
+            var studentWithMostExercises = students.Select(student => new
+            {
+                firstName = student.FirstName,
+                    lastName = student.LastName,
+                    exerciseCount = student.Exercises.Count()
+            }).OrderByDescending(exercises => exercises.exerciseCount).FirstOrDefault();
+            Console.WriteLine($"The student with the most exercises is {studentWithMostExercises.firstName} {studentWithMostExercises.lastName}");
+
+            var numberOfStudents = students.Select(student => new
+            {
+                name = student.Name,
+                    studentInCohort = student.StudentList.Count();
+            }).ToList();
+
+            foreach (var item5 in numOfStudents)
+            {
+                Console.WriteLine($"In {item5.name} there are {item5.numOfStudentsInCohort} students.");
+            }
+
+        }
+    )
+
+}
+}
 }
